@@ -6,17 +6,56 @@ import { Context } from "../store/appContext";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+	let character = store.people[(parseInt(params.theid)-1)].properties
+	console.log(store.single)
 	return (
-		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
-
-			<hr className="my-4" />
-
-			<Link to="/">
+		<div className="container">
+			<div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
+				<div className="col d-flex align-items-center">
+					<img src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
+				</div>
+			 	<div className="col">
+					<div><h1 className="display-4">{store.single.Name}</h1></div>
+					<div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus condimentum orci congue auctor. Integer non pharetra metus. In id nisi condimentum, fermentum eros sed, condimentum diam. Donec sit amet nulla orci. Nam efficitur, nulla sed sagittis iaculis, tellus dolor rhoncus ante, sit amet placerat massa orci eu lacus. Sed sagittis est venenatis, luctus metus nec, lacinia purus. Fusce ac ipsum id nisi euismod convallis. Nunc hendrerit massa in lacus suscipit, sed accumsan augue auctor. Praesent aliquam dui eu ante tincidunt, vehicula dignissim dolor sagittis. In hac habitasse platea dictumst. Nullam ut ligula volutpat, euismod purus ac, viverra est. Pellentesque vestibulum augue ante, in commodo purus condimentum eu. Aenean ut enim dolor. Cras felis libero, ultricies non bibendum sit amet, eleifend eu dolor. Proin condimentum nisl ac magna dictum ullamcorper. Cras tincidunt bibendum est, malesuada molestie urna vulputate in.</p>
+					</div>
+				</div>
+			</div>
+			{/* Data from character */}
+			<hr className="my-4" style={{color:"red", height:"2px"}}/ >
+			<div style={{color: "red"}}>
+				<div className="row row-col-auto justify-content-around text-center">
+					<div className="col">
+						<p>{Object.keys(store.single)[0]}</p>
+						<p>{Object.values(store.single)[0]}</p>
+					</div>
+					<div className="col">
+						<p>{Object.keys(store.single)[1]}</p>
+						<p>{Object.values(store.single)[1]}</p>
+					</div>
+					<div className="col">
+						<p>{Object.keys(store.single)[2]}</p>
+						<p>{Object.values(store.single)[2]}</p>
+					</div>
+					<div className="col">
+						<p>{Object.keys(store.single)[3]}</p>
+						<p>{Object.values(store.single)[3]}</p>
+					</div>
+					<div className="col">
+						<p>{Object.keys(store.single)[4]}</p>
+						<p>{Object.values(store.single)[4]}</p>
+					</div>
+					<div className="col">
+						<p>{Object.keys(store.single)[5]}</p>
+						<p>{Object.values(store.single)[5]}</p>
+					</div>
+				</div>
+			</div>
+			{/* <Link to="/">
 				<span className="btn btn-primary btn-lg" href="#" role="button">
 					Back home
 				</span>
-			</Link>
+			</Link> */}
 		</div>
 	);
 };
