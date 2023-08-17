@@ -8,7 +8,7 @@ export const Vehicles = () => {
 	useEffect(()=>{
 		actions.getVehicles()
 	},[])
-	function setSingle(data){
+	function setSingle(data, uid, action){
 		
 		let obj = {
 			Name: data.name, 
@@ -16,9 +16,14 @@ export const Vehicles = () => {
 			Passengers: data.passengers, 
 			Speed: data.max_atmosphering_speed, 
 			"Cargo Capacity": data.cargo_capacity, 
-			Crew: data.crew
+			Crew: data.crew,
+			id: uid,
+			type: "vehicles"
 		}
-		actions.setSingle(obj)
+		if (action == "fav"){
+			actions.addFavorite(obj)
+		}
+		else {actions.setSingle(obj)}
 	}
 
 	return (
@@ -37,9 +42,9 @@ export const Vehicles = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-								<a href="#" className="btn btn-outline-primary" onClick={()=> setSingle(vehicle.properties)}>Learn More!</a>
+								<a className="btn btn-outline-primary" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</a>
 							</Link>
-					  		<a href="#" className="btn btn-outline-warning">F</a>
+					  		<a className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</a>
 				  		</div>
 					</div>
 		  		</div>

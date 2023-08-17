@@ -12,7 +12,7 @@ export const Planets = () => {
 	function errorImage(e){
 		e.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg"
 	}
-	function setSingle(data){
+	function setSingle(data, uid, e, action){
 		
 		let obj = {
 			Name: data.name, 
@@ -20,9 +20,14 @@ export const Planets = () => {
 			Population: data.population, 
 			"Orbital Period": data.orbital_period, 
 			"Rotation Period":data.rotation_period, 
-			Diameter: data.diameter
+			Diameter: data.diameter,
+			id: uid,
+			type: "planets"
 		}
-		actions.setSingle(obj)
+		if (action == "fav"){
+			actions.addFavorite(obj)
+		}
+		else {actions.setSingle(obj)}
 	}
 	return (
 	<div className="container my-5">
@@ -39,9 +44,9 @@ export const Planets = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"planets/"+planet.uid}>
-								<a href="#" className="btn btn-outline-primary" onClick={()=> setSingle(planet.properties)}>Learn More!</a>
+								<a className="btn btn-outline-primary" onClick={()=> setSingle(planet.properties)}>Learn More!</a>
 							</Link>
-					  		<a href="#" className="btn btn-outline-warning">F</a>
+					  		<button className="btn btn-outline-warning" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
 				  		</div>
 					</div>
 		  		</div>

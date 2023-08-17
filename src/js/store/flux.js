@@ -23,10 +23,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			setSingle: (arr)=> {
-				setStore({single:arr})
+			setSingle: (obj)=> {
+				setStore({single:obj})
 			},
 			getPeople: async () => {
+				if(JSON.parse(localStorage.getItem("people")) != null) {
+					setStore({people: JSON.parse(localStorage.getItem("people"))})
+					return
+				}
 				try {
 					const resp = await fetch('https://www.swapi.tech/api/people')
 					if(!resp.ok) {
@@ -48,6 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								return x
 							})
 							setStore({people:data})
+							localStorage.setItem("people", JSON.stringify(data))
 						}
 					} catch (error) {
 						console.error(error)
@@ -59,6 +64,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			},
 			getPlanets: async () => {
+				if(JSON.parse(localStorage.getItem("planets")) != null) {
+					setStore({planets: JSON.parse(localStorage.getItem("planets"))})
+					return
+				}
 				try {
 					const resp = await fetch('https://www.swapi.tech/api/planets')
 					if(!resp.ok) {
@@ -80,6 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								return x
 							})
 							setStore({planets:data})
+							localStorage.setItem("planets", JSON.stringify(data))
 						}
 					} catch (error) {
 						console.error(error)
@@ -91,6 +101,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			},
 			getVehicles: async () => {
+				if(JSON.parse(localStorage.getItem("vehicles")) != null) {
+					setStore({vehicles: JSON.parse(localStorage.getItem("vehicles"))})
+					return
+				}
 				try {
 					const resp = await fetch('https://www.swapi.tech/api/vehicles')
 					if(!resp.ok) {
@@ -112,6 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 								return x
 							})
 							setStore({vehicles:data})
+							localStorage.setItem("vehicles", JSON.stringify(data))
 						}
 					} catch (error) {
 						console.error(error)
@@ -122,20 +137,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				
 			},
-			// getFavorites: async () => {
-			// 	fetch('https://playground.4geeks.com/apis/fake/todos/user/ecmapps').then(response =>{}) {
-			// 		if(!response.ok){
-			// 			//404 event check and user creation 
-			// 			if (response.status == 404){
-			// 				createUser()
-			// 			}
-			// 			else {throw Error(response.statusText);}
-			// 		}
-			// 	}
-			// },
-			// createUser: async() => {
-
-			// },
+			addFavorite: (obj) => {
+				const{favorites} = getStore()
+				//Prevent same item from being in favorites
+				for(let item in favorites){
+					if (favorites[item].Name == obj.Name){return}
+				}
+				let arr = [...favorites, obj]
+				setStore({favorites:arr})
+				localStorage.setItem("fav",JSON.stringify(arr))
+			},
+			deleteFavorite: async (index)=>{
+				const {favorites} = getStore()
+				let temp = favorites
+				temp.splice(index, 1)
+				setStore({favorites:temp})
+				localStorage.setItem("fav", JSON.stringify(temp))
+			},
+			getFavorites: () => {
+				const {favorites} = getStore()
+				if(JSON.parse(localStorage.getItem("fav")) != null){ 
+					setStore({favorites: JSON.parse(localStorage.getItem("fav"))}) 
+				}
+			},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},

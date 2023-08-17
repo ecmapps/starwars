@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import {Context} from "../store/appContext";
 
 export const Navbar = () => {
+	const {store, actions} = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light mb-3 px-3">
+		<nav className="navbar navbar-light bg-light mb-3 px-3 sticky-top">
 			<div className="container">
 				<Link to="/">
 					STAR WARS
@@ -15,13 +17,23 @@ export const Navbar = () => {
 					</ul>
 				</div> */}
 				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-						Favorites 
+					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+						<div className="d-inline-flex">
+							<p className="my-0 me-1">Favorites </p>
+							<small className="my-0 px-1" style={{background:"grey", borderRadius: "50% 50%"}}><strong>{store.favorites.length}</strong></small>
+						</div>
 					</button>
-					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
-						<li className="d-flex justify-content-between">
-							<a class="dropdown-item">Action number 1</a>
-							
+					<ul class="dropdown-menu dropdown-menu-end align-self-center" aria-labelledby="dropdownMenuButton1">
+						<li className="d-flex justify-content-between flex-column">
+							{store.favorites.map((item, index)=>{return(
+								<div className="d-inline-flex justify-content-between pe-2 pt-1" key={index}>
+									<Link to={"/single/"+item.type+"/"+item.id}>
+										<a className="dropdown-item" onClick={()=> actions.setSingle(item)}>{item.Name}</a>
+									</Link>
+									<a className="align-self-center" onClick={()=> actions.deleteFavorite(index)}>X</a>
+								</div>
+							)
+							})}							
 						</li>
 					</ul>
 				</div>

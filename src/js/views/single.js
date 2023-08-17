@@ -6,13 +6,16 @@ import { Context } from "../store/appContext";
 export const Single = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
-	let character = store.people[(parseInt(params.theid)-1)].properties
-	console.log(store.single)
+	
+	function errorImage(e){
+		e.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg"
+	}
+
 	return (
 		<div className="container">
 			<div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
 				<div className="col d-flex align-items-center">
-					<img src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
+					<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
 				</div>
 			 	<div className="col">
 					<div><h1 className="display-4">{store.single.Name}</h1></div>

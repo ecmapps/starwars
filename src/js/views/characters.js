@@ -8,7 +8,7 @@ export const Characters = () => {
 	useEffect(()=>{
 		actions.getPeople()
 	},[])
-	function setSingle(data){
+	function setSingle(data, uid, action){
 		
 		let obj = {
 			Name: data.name, 
@@ -16,9 +16,14 @@ export const Characters = () => {
 			Gender: data.gender, 
 			Height: data.height, 
 			"Skin Color": data.skin_color, 
-			"Eye Color": data.eye_color
+			"Eye Color": data.eye_color,
+			id: uid,
+			type: "characters"
 		}
-		actions.setSingle(obj)
+		if (action == "fav"){
+			actions.addFavorite(obj)
+		}
+		else {actions.setSingle(obj)}
 	}
 	return (
 	<div className="container my-5">
@@ -36,9 +41,9 @@ export const Characters = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"characters/"+person.uid}>
-								<a href="#" className="btn btn-outline-primary" onClick={()=>setSingle(person.properties)}>Learn More!</a>
+								<a className="btn btn-outline-primary" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</a>
 							</Link>
-					  		<a href="#" className="btn btn-outline-warning">F</a>
+					  		<a className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</a>
 				  		</div>
 					</div>
 		  		</div>
