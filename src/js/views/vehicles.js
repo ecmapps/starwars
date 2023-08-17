@@ -27,7 +27,7 @@ export const Vehicles = () => {
 	}
 
 	return (
-	<div className="container my-5">
+	<div className="container my-5 pb-5">
 		<h1 style={{color:"red"}}>Vehicles</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{store.vehicles.map((vehicle, index) =>{return(

@@ -8,7 +8,8 @@ export const Navbar = () => {
 		<nav className="navbar navbar-light bg-light mb-3 px-3 sticky-top">
 			<div className="container">
 				<Link to="/">
-					STAR WARS
+					<img src='https://pngimg.com/d/star_wars_logo_PNG37.png' style={{maxHeight: "50px"}} / >
+					{/* <img src='https://1000logos.net/wp-content/uploads/2017/06/Star-Wars-Logo-1.png' style={{maxHeight: "80px"}} / > */}
 				</Link>
 				{/* <div className="dropdown">
 					<button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">Favorites </button>
