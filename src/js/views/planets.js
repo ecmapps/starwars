@@ -35,16 +35,20 @@ export const Planets = () => {
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{store.planets.map((planet, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
-					<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "300px", width: "100%"}}/>
+					<Link to={"/single/"+"planets/"+planet.uid}>
+						<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onClick={()=>setSingle(planet.properties, planet.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "300px", width: "100%"}}/>
+					</Link>
 					<div className="card-body">
-						<h5 className="card-title">{planet.properties.name}</h5>
+						<Link to={"/single/"+"planets/"+planet.uid} style={{textDecoration: "none", color: "black"}}>
+							<h5 className="card-title" onClick={()=> setSingle(planet.properties,planet.uid)}>{planet.properties.name}</h5>
+						</Link>
 				  		<div className="card-text">
 						  	<p className="m-0">Population: {planet.properties.population}</p>
 							<p>Terrain: {planet.properties.terrain}</p>
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"planets/"+planet.uid}>
-								<a className="btn btn-outline-primary" onClick={()=> setSingle(planet.properties)}>Learn More!</a>
+								<a className="btn btn-outline-dark" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</a>
 							</Link>
 					  		<button className="btn btn-outline-warning" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
 				  		</div>

@@ -32,17 +32,21 @@ export const Vehicles = () => {
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{store.vehicles.map((vehicle, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
-					<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "350px", width: "100%"}}/>
+					<Link to={"/single/"+"vehicles/"+vehicle.uid}>
+						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} onClick={()=> setSingle(vehicle.properties, vehicle.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "350px", width: "100%"}}/>
+					</Link>
 					<div className="card-body">
-						<h5 className="card-title">{vehicle.properties.name}</h5>
-				  		<div className="card-text">
+						<Link to={"/single/"+"vehicles/"+vehicle.uid} style={{textDecoration: "none", color: "black"}}>
+							<h5 className="card-title" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>{vehicle.properties.name}</h5>
+				  		</Link>
+						<div className="card-text">
 						  	<p className="m-0">Cargo Capacity: {vehicle.properties.cargo_capacity}</p>
 							<p className="m-0">Max Speed: {vehicle.properties.max_atmosphering_speed}</p>
 							<p>Crew: {vehicle.properties.crew}</p>
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-								<a className="btn btn-outline-primary" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</a>
+								<a className="btn btn-outline-dark" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</a>
 							</Link>
 					  		<a className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</a>
 				  		</div>

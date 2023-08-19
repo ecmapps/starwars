@@ -6,7 +6,7 @@ import { Context } from "../store/appContext";
 export const Characters = () => {
 	const {store, actions} = useContext(Context)
 	useEffect(()=>{
-		actions.getPeople()
+		actions.getPeople("people")
 	},[])
 	function setSingle(data, uid, action){
 		
@@ -31,9 +31,13 @@ export const Characters = () => {
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{store.people.map((person, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
-					<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} className="card-img-top" style={{objectFit: "none", objectPosition: "top", maxHeight: "350px", width: "100%"}}/>
+					<Link to={"/single/"+"characters/"+person.uid}>
+						<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} onClick={()=>setSingle(person.properties, person.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "top", maxHeight: "350px", width: "100%"}}/>
+					</Link>
 					<div className="card-body">
-						<h5 className="card-title">{person.properties.name}</h5>
+						<Link to={"/single/"+"characters/"+person.uid} style={{textDecoration: "none", color: "black"}}>
+							<h5 className="card-title" onClick={()=>setSingle(person.properties, person.uid)}>{person.properties.name}</h5>
+						</Link>
 				  		<div className="card-text">
 						  	<p className="m-0">Gender: {person.properties.gender}</p>
 							<p className="m-0">Hair Color: {person.properties.hair_color}</p>
@@ -41,7 +45,7 @@ export const Characters = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"characters/"+person.uid}>
-								<a className="btn btn-outline-primary" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</a>
+								<a className="btn btn-outline-dark" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</a>
 							</Link>
 					  		<a className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</a>
 				  		</div>
