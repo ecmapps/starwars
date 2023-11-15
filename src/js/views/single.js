@@ -12,7 +12,7 @@ export const Single = props => {
 	}
 
 	return (
-		<div className="container">
+		<div className="container pb-4">
 			<div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
 				<div className="col d-flex align-items-center">
 					<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
@@ -54,11 +54,6 @@ export const Single = props => {
 					</div>
 				</div>
 			</div>
-			{/* <Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
-				</span>
-			</Link> */}
 		</div>
 	);
 };

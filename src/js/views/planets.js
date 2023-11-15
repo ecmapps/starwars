@@ -1,14 +1,27 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 import getState from "../store/flux";
 
 export const Planets = () => {
+	const [loading, setLoading] = useState(false)
 	const {store, actions} = useContext(Context)
 	useEffect(()=>{
-		actions.getPlanets()
+		loadData()
 	},[])
+	async function loadData(){
+		setLoading(true);
+		const response = await actions.getPlanets()
+		setLoading(false);
+	}
+	function spinner() {
+		return (
+		<div className="loader-container carousel-container">
+			<span className="spinner"></span>
+		</div>
+		)
+	}
 	function errorImage(e){
 		e.target.src = "https://starwars-visualguide.com/assets/img/placeholder.jpg"
 	}
@@ -33,7 +46,7 @@ export const Planets = () => {
 	<div className="container my-5">
 		<h1 style={{color: "red"}}>Planets</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
-			{store.planets.map((planet, index) =>{return(
+			{loading?spinner():store.planets.map((planet, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
 					<Link to={"/single/"+"planets/"+planet.uid}>
 						<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onClick={()=>setSingle(planet.properties, planet.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "300px", width: "100%"}}/>
@@ -48,7 +61,7 @@ export const Planets = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"planets/"+planet.uid}>
-								<a className="btn btn-outline-dark" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</a>
+								<span className="btn btn-outline-dark" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</span>
 							</Link>
 					  		<button className="btn btn-outline-warning" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
 				  		</div>
