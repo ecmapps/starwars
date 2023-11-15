@@ -1,13 +1,26 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
 import { Context } from "../store/appContext";
 
 export const Vehicles = () => {
+	const [loading, setLoading] = useState(false)
 	const {store, actions} = useContext(Context)
 	useEffect(()=>{
-		actions.getVehicles()
+		loadData()
 	},[])
+	async function loadData(){
+		setLoading(true);
+		const response = await actions.getVehicles()
+		setLoading(false);
+	}
+	function spinner() {
+		return (
+		<div className="loader-container carousel-container">
+			<span className="spinner"></span>
+		</div>
+		)
+	}
 	function setSingle(data, uid, action){
 		
 		let obj = {
@@ -30,7 +43,7 @@ export const Vehicles = () => {
 	<div className="container my-5 pb-5">
 		<h1 style={{color:"red"}}>Vehicles</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
-			{store.vehicles.map((vehicle, index) =>{return(
+			{loading?spinner():store.vehicles.map((vehicle, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
 					<Link to={"/single/"+"vehicles/"+vehicle.uid}>
 						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} onClick={()=> setSingle(vehicle.properties, vehicle.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "350px", width: "100%"}}/>
@@ -46,9 +59,9 @@ export const Vehicles = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-								<a className="btn btn-outline-dark" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</a>
+								<span className="btn btn-outline-dark" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</span>
 							</Link>
-					  		<a className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</a>
+					  		<span className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</span>
 				  		</div>
 					</div>
 		  		</div>
