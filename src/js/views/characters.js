@@ -1,15 +1,29 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/home.css";
+import "../../styles/spinner.css"
 import { Context } from "../store/appContext";
 
 export const Characters = () => {
 	const {store, actions} = useContext(Context)
+	const [loading, setLoading] = useState(false)
+
 	useEffect(()=>{
-		actions.getPeople("people")
+		loadData()
 	},[])
+	async function loadData(){
+		setLoading(true);
+		const response = await actions.getPeople("people")
+		setLoading(false);
+	}
+	function spinner() {
+		return (
+		<div className="loader-container carousel-container">
+			<span className="spinner"></span>
+		</div>
+		)
+	}
 	function setSingle(data, uid, action){
-		
 		let obj = {
 			Name: data.name, 
 			"Birth Year": data.birth_year, 
@@ -26,10 +40,10 @@ export const Characters = () => {
 		else {actions.setSingle(obj)}
 	}
 	return (
-	<div className="container my-5">
+	<div className="container mt-2 mb-5">
 		<h1 style={{color:"red"}}>Characters</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
-			{store.people.map((person, index) =>{return(
+			{(loading?spinner():store.people.map((person, index) =>{return(
 				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
 					<Link to={"/single/"+"characters/"+person.uid}>
 						<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} onClick={()=>setSingle(person.properties, person.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "top", maxHeight: "350px", width: "100%"}}/>
@@ -45,13 +59,13 @@ export const Characters = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"characters/"+person.uid}>
-								<a className="btn btn-outline-dark" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</a>
+								<span className="btn btn-outline-dark" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</span>
 							</Link>
-					  		<a className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</a>
+					  		<span className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</span>
 				  		</div>
 					</div>
 		  		</div>
-			)})}
+			)}))}
 			
     	</div>
 	</div>

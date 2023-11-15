@@ -3,18 +3,6 @@ import { createHashRouter } from "react-router-dom";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			people: [],
 			planets: [],
 			vehicles: [],
@@ -39,12 +27,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await resp.json()
 					//Formatting data to get all character info for each one
 					var category = data.results
-					console.log({category})
 					category = category.map(person =>fetch(person.url))
 					try {
 						let responses = await Promise.all(category)
 						if(responses.every(response=>response.ok)){
-							console.log('All resp ok')
 							responses = responses.map(resp => resp.json())
 							let data = await Promise.all(responses)
 							data = data.map(person => {
@@ -53,6 +39,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							})
 							setStore({people:data})
 							localStorage.setItem("people", JSON.stringify(data))
+							return data
 						}
 					} catch (error) {
 						console.error(error)
@@ -74,14 +61,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(resp.status + ": " + resp.statusText)
 					}
 					let data = await resp.json()
-					//Formatting data to get all character info for each one
 					var category = data.results
-					console.log({category})
 					category = category.map(person =>fetch(person.url))
 					try {
 						let responses = await Promise.all(category)
 						if(responses.every(response=>response.ok)){
-							console.log('All resp ok')
 							responses = responses.map(resp => resp.json())
 							let data = await Promise.all(responses)
 							data = data.map(person => {
@@ -111,14 +95,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 						console.error(resp.status + ": " + resp.statusText)
 					}
 					let data = await resp.json()
-					//Formatting data to get all character info for each one
 					var category = data.results
-					console.log({category})
 					category = category.map(person =>fetch(person.url))
 					try {
 						let responses = await Promise.all(category)
 						if(responses.every(response=>response.ok)){
-							console.log('All resp ok')
 							responses = responses.map(resp => resp.json())
 							let data = await Promise.all(responses)
 							data = data.map(person => {
@@ -159,28 +140,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if(JSON.parse(localStorage.getItem("fav")) != null){ 
 					setStore({favorites: JSON.parse(localStorage.getItem("fav"))}) 
 				}
-			},
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
 			}
 		}
 	};
