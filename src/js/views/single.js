@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import '../../styles/single.css'
 
 export const Single = props => {
 	const { store, actions } = useContext(Context);
@@ -12,7 +13,7 @@ export const Single = props => {
 	}
 
 	return (
-		<div className="container pb-4">
+		<div className="container pb-4 info-container">
 			<div className="row row-cols-1 row-cols-sm-1 row-cols-md-2">
 				<div className="col d-flex align-items-center">
 					<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
@@ -27,7 +28,7 @@ export const Single = props => {
 			{/* Data from character */}
 			<hr className="my-4" style={{color:"red", height:"2px"}}/ >
 			<div style={{color: "red"}}>
-				<div className="row row-col-auto justify-content-around text-center">
+				<div className="row row-col-auto justify-content-around text-center info-container">
 					<div className="col">
 						<p>{Object.keys(store.single)[0]}</p>
 						<p>{Object.values(store.single)[0]}</p>

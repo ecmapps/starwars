@@ -40,7 +40,7 @@ export const Characters = () => {
 		else {actions.setSingle(obj)}
 	}
 	return (
-	<div className="container mt-2 mb-5">
+	<div className="container main-container mt-2 mb-5">
 		<h1 style={{color:"red"}}>Characters</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{(loading?spinner():store.people.map((person, index) =>{return(
@@ -48,7 +48,7 @@ export const Characters = () => {
 					<Link to={"/single/"+"characters/"+person.uid}>
 						<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} onClick={()=>setSingle(person.properties, person.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "top", maxHeight: "350px", width: "100%"}}/>
 					</Link>
-					<div className="card-body">
+					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"characters/"+person.uid} style={{textDecoration: "none", color: "black"}}>
 							<h5 className="card-title" onClick={()=>setSingle(person.properties, person.uid)}>{person.properties.name}</h5>
 						</Link>

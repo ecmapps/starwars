@@ -51,7 +51,7 @@ export const Planets = () => {
 					<Link to={"/single/"+"planets/"+planet.uid}>
 						<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onClick={()=>setSingle(planet.properties, planet.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "300px", width: "100%"}}/>
 					</Link>
-					<div className="card-body">
+					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"planets/"+planet.uid} style={{textDecoration: "none", color: "black"}}>
 							<h5 className="card-title" onClick={()=> setSingle(planet.properties,planet.uid)}>{planet.properties.name}</h5>
 						</Link>

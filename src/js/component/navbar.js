@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import {Context} from "../store/appContext";
+import '../../styles/navbar.css'
 
 export const Navbar = () => {
 	const {store, actions} = useContext(Context);
 	return (
-		<nav className="navbar navbar-light bg-light mb-3 px-3 sticky-top">
-			<div className="container">
+		<nav className="navbar mb-3 px-3 sticky-top main-container">
+			<div className="container nav-container gap-3">
 				<Link to="/">
-					<img src='https://pngimg.com/d/star_wars_logo_PNG37.png' style={{maxHeight: "50px"}} / >
+					<img src='https://pngimg.com/d/star_wars_logo_PNG37.png'/ >
 				</Link>
 				<div className="dropdown">
-					<button className="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+					<button className="btn btn-warning rounded-pill dropdown-toggle px-3 py-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 						<div className="d-inline-flex">
 							<p className="my-0 me-1">Favorites </p>
-							<small className="my-0 px-1 align-self-center" style={{background:"grey", borderRadius: "50% 50%"}}><strong>{store.favorites.length}</strong></small>
+							<small className="my-0 px-1 align-self-center" style={{background:"white", borderRadius: "50% 50%"}}><strong>{store.favorites.length}</strong></small>
 						</div>
 					</button>
 					<ul className="dropdown-menu dropdown-menu-end align-self-center" aria-labelledby="dropdownMenuButton1">

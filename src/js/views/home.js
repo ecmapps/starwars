@@ -7,6 +7,8 @@ import injectContext from "../store/appContext";
 
 export const Home = () => (
 	<div>
+		<div className='stars'></div>
+		<div className='twinkling'></div>
 		<Characters />
 		<Planets />
 		<Vehicles />

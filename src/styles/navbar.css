@@ -1,0 +1,12 @@
+.main-container{
+    background-color: transparent;
+    top: 10px;
+}
+.nav-container{
+   background-color: white;
+    border-radius: 4.25rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

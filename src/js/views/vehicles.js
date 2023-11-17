@@ -48,7 +48,7 @@ export const Vehicles = () => {
 					<Link to={"/single/"+"vehicles/"+vehicle.uid}>
 						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} onClick={()=> setSingle(vehicle.properties, vehicle.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "350px", width: "100%"}}/>
 					</Link>
-					<div className="card-body">
+					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"vehicles/"+vehicle.uid} style={{textDecoration: "none", color: "black"}}>
 							<h5 className="card-title" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>{vehicle.properties.name}</h5>
 				  		</Link>
