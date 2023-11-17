@@ -59,7 +59,7 @@ export const Vehicles = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-								<span className="btn btn-outline-dark" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</span>
 							</Link>
 					  		<span className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</span>
 				  		</div>

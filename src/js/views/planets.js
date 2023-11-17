@@ -61,7 +61,7 @@ export const Planets = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"planets/"+planet.uid}>
-								<span className="btn btn-outline-dark" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</span>
 							</Link>
 					  		<button className="btn btn-outline-warning" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
 				  		</div>

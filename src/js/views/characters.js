@@ -59,7 +59,7 @@ export const Characters = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"characters/"+person.uid}>
-								<span className="btn btn-outline-dark" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</span>
 							</Link>
 					  		<span className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</span>
 				  		</div>
