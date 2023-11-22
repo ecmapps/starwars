@@ -21,14 +21,14 @@ export const Navbar = () => {
 							</div>
 						</div>
 					</button>
-					<ul className="dropdown-menu dropdown-menu-end align-self-center" aria-labelledby="dropdownMenuButton1">
+					<ul className="dropdown-menu dropdown-menu-end align-self-center transparent-background" aria-labelledby="dropdownMenuButton1">
 						{((store.favorites.length < 1? <li className="text-center">No favorites</li>:store.favorites.map((item, index)=>{return(
 							<li className="d-flex justify-content-between flex-column" key={index}>
 								<div className="d-inline-flex justify-content-between pe-2 pt-1">
 									<Link to={"/single/"+item.type+"/"+item.id} style={{textDecoration: "none", color: "black"}}>
-										<span className="dropdown-item" onClick={()=> actions.setSingle(item)} style={{textDecoration:"none"}}>{item.Name}</span>
+										<span className="dropdown-item yellow-text" onClick={()=> actions.setSingle(item)} style={{textDecoration:"none"}}>{item.Name}</span>
 									</Link>
-									<span className="align-self-center" style={{textDecoration: "none"}} onClick={()=> actions.deleteFavorite(index)}>X</span>
+									<span className="align-self-center" style={{textDecoration: "none", color:"white"}} onClick={()=> actions.deleteFavorite(index)}>X</span>
 								</div>
 							</li>
 						)
