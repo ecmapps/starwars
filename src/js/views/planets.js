@@ -47,9 +47,9 @@ export const Planets = () => {
 		<h1 style={{color: "red"}}>Planets</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{loading?spinner():store.planets.map((planet, index) =>{return(
-				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
+				<div className="card gap-0" style={{minWidth: "250px",maxWidth: "250px"}} key={index}>
 					<Link to={"/single/"+"planets/"+planet.uid}>
-						<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onClick={()=>setSingle(planet.properties, planet.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "300px", width: "100%"}}/>
+						<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`} onClick={()=>setSingle(planet.properties, planet.uid)} className="card-img-top char-card" />
 					</Link>
 					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"planets/"+planet.uid} style={{textDecoration: "none", color: "black"}}>
@@ -61,9 +61,9 @@ export const Planets = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"planets/"+planet.uid}>
-								<span className="btn btn-outline-warning" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning rounded-pill" onClick={()=> setSingle(planet.properties,planet.uid)}>Learn More</span>
 							</Link>
-					  		<button className="btn btn-outline-warning" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
+					  		<button className="btn btn-outline-warning rounded-circle" data-toggle="button" onClick={()=>setSingle(planet.properties, planet.uid, event,"fav")}>♥</button>
 				  		</div>
 					</div>
 		  		</div>

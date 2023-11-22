@@ -1,20 +1,11 @@
 body{
-    background-color: black;
-}
-.stars{
-    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png) repeat;
-    background-repeat: round;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: -2;
+    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png);
+    background-size: cover;
 }
 .card{
     background-color: transparent;
     backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(0.5px);
     color: white;
 }
 h5{
@@ -22,15 +13,14 @@ h5{
 }
 .twinkling{
 	width:10000px;
-	height: 100%;
-	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") repeat;
-	background-size: 1000px 1000px;
-    position: absolute;
+    height: 100dvh;
+    position:fixed;
     right: 0;
     top: 0;
     bottom: 0;
+	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") round;
+    background-size: 1000px 1000px;
     z-index: -1;
-    
     -moz-animation:move-background 70s linear infinite;
   -ms-animation:move-background 70s linear infinite;
   -o-animation:move-background 70s linear infinite;
@@ -74,4 +64,11 @@ h5{
   }
 h1{
     color: rgb(255, 193, 7) !important;
+}
+
+.char-card{
+    object-fit: cover; 
+    object-position: top; 
+    max-height: 250px;
+    width: 100%;
 }

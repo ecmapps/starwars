@@ -44,9 +44,9 @@ export const Characters = () => {
 		<h1 style={{color:"red"}}>Characters</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{(loading?spinner():store.people.map((person, index) =>{return(
-				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
+				<div className="card gap-0" style={{minWidth: "250px",maxWidth: "250px"}} key={index}>
 					<Link to={"/single/"+"characters/"+person.uid}>
-						<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} onClick={()=>setSingle(person.properties, person.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "top", maxHeight: "350px", width: "100%"}}/>
+						<img src={`https://starwars-visualguide.com/assets/img/characters/${person.uid}.jpg`} onClick={()=>setSingle(person.properties, person.uid)} className="card-img-top char-card" />
 					</Link>
 					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"characters/"+person.uid} style={{textDecoration: "none", color: "black"}}>
@@ -59,9 +59,9 @@ export const Characters = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"characters/"+person.uid}>
-								<span className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning rounded-pill" onClick={()=>setSingle(person.properties, person.uid)}>Learn More</span>
 							</Link>
-					  		<span className="btn btn-outline-warning" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</span>
+					  		<span className="btn btn-outline-warning rounded-circle" onClick={()=>setSingle(person.properties, person.uid, "fav")}>♥</span>
 				  		</div>
 					</div>
 		  		</div>

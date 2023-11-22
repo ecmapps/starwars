@@ -18,16 +18,16 @@ export const Single = props => {
 				<div className="col d-flex align-items-center">
 					<img onError={errorImage} src={`https://starwars-visualguide.com/assets/img/${params.type}/${params.theid}.jpg`} style={{width: "100%", display: "block", maxHeight: "75vh", objectFit: "contain"}}/>
 				</div>
-			 	<div className="col">
+				<div className="col">
 					<div><h1 className="display-4">{store.single.Name}</h1></div>
 					<div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus condimentum orci congue auctor. Integer non pharetra metus. In id nisi condimentum, fermentum eros sed, condimentum diam. Donec sit amet nulla orci. Nam efficitur, nulla sed sagittis iaculis, tellus dolor rhoncus ante, sit amet placerat massa orci eu lacus. Sed sagittis est venenatis, luctus metus nec, lacinia purus. Fusce ac ipsum id nisi euismod convallis. Nunc hendrerit massa in lacus suscipit, sed accumsan augue auctor. Praesent aliquam dui eu ante tincidunt, vehicula dignissim dolor sagittis. In hac habitasse platea dictumst. Nullam ut ligula volutpat, euismod purus ac, viverra est. Pellentesque vestibulum augue ante, in commodo purus condimentum eu. Aenean ut enim dolor. Cras felis libero, ultricies non bibendum sit amet, eleifend eu dolor. Proin condimentum nisl ac magna dictum ullamcorper. Cras tincidunt bibendum est, malesuada molestie urna vulputate in.</p>
+						<p className="font-monospace card">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam dapibus condimentum orci congue auctor. Integer non pharetra metus. In id nisi condimentum, fermentum eros sed, condimentum diam. Donec sit amet nulla orci. Nam efficitur, nulla sed sagittis iaculis, tellus dolor rhoncus ante, sit amet placerat massa orci eu lacus. Sed sagittis est venenatis, luctus metus nec, lacinia purus. Fusce ac ipsum id nisi euismod convallis. Nunc hendrerit massa in lacus suscipit, sed accumsan augue auctor. Praesent aliquam dui eu ante tincidunt, vehicula dignissim dolor sagittis. In hac habitasse platea dictumst. Nullam ut ligula volutpat, euismod purus ac, viverra est. Pellentesque vestibulum augue ante, in commodo purus condimentum eu. Aenean ut enim dolor. Cras felis libero, ultricies non bibendum sit amet, eleifend eu dolor. Proin condimentum nisl ac magna dictum ullamcorper. Cras tincidunt bibendum est, malesuada molestie urna vulputate in.</p>
 					</div>
 				</div>
 			</div>
 			{/* Data from character */}
-			<hr className="my-4" style={{color:"red", height:"2px"}}/ >
-			<div style={{color: "red"}}>
+			<hr className="my-4 yellow-text" style={{height:"2px"}}/ >
+			<div className="yellow-text">
 				<div className="row row-col-auto justify-content-around text-center info-container">
 					<div className="col">
 						<p>{Object.keys(store.single)[0]}</p>

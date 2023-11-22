@@ -13,6 +13,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			setSingle: (obj)=> {
 				setStore({single:obj})
+				if(JSON.parse(localStorage.getItem("single")!=obj)){
+					localStorage.setItem("single", JSON.stringify(obj))
+				}
 			},
 			getPeople: async () => {
 				if(JSON.parse(localStorage.getItem("people")) != null) {
