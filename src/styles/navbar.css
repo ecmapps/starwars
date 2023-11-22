@@ -1,0 +1,24 @@
+.main-container{
+    background-color: transparent;
+    top: 5px;
+}
+.nav-container{
+    border-radius: 4.25rem;
+    padding-top: 10px;
+    padding-bottom:10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.favorites-counter{
+    width: 25px;
+    height: 25px;
+}
+.yellow-text{
+    color: #fcc107;
+}
+.transparent-background{
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(5px);
+}

@@ -1,15 +1,8 @@
-body{
-    background: black url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/stars.png);
-    background-size: cover;
+.info-container{
+    backdrop-filter: blur(50px);
 }
-.card{
-    background-color: transparent;
-    backdrop-filter: blur(1px);
-    -webkit-backdrop-filter: blur(0.5px);
-    color: white;
-}
-h5{
-    color: #fcc107;
+img{
+    max-height: 60px; /* This is to prevent the logo from expanding*/
 }
 .twinkling{
 	width:10000px;
@@ -20,7 +13,7 @@ h5{
     bottom: 0;
 	background: transparent url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1231630/twinkling.png") round;
     background-size: 1000px 1000px;
-    z-index: -1;
+    z-index: -2;
     -moz-animation:move-background 70s linear infinite;
   -ms-animation:move-background 70s linear infinite;
   -o-animation:move-background 70s linear infinite;
@@ -62,13 +55,3 @@ h5{
           -webkit-transform: translate3d(1000px, 0px, 0px);
       }
   }
-h1{
-    color: rgb(255, 193, 7) !important;
-}
-
-.char-card{
-    object-fit: cover; 
-    object-position: top; 
-    max-height: 250px;
-    width: 100%;
-}

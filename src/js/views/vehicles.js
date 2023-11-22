@@ -44,11 +44,11 @@ export const Vehicles = () => {
 		<h1 style={{color:"red"}}>Vehicles</h1>
 		<div className="d-flex flex-row flex-nowrap gap-4" style={{overflowX: "scroll"}}>
 			{loading?spinner():store.vehicles.map((vehicle, index) =>{return(
-				<div className="card gap-0" style={{minWidth: "300px",maxWidth: "300px"}} key={index}>
+				<div className="card gap-0" style={{minWidth: "250px",maxWidth: "250px"}} key={index}>
 					<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} onClick={()=> setSingle(vehicle.properties, vehicle.uid)} className="card-img-top" style={{objectFit: "none", objectPosition: "center", maxHeight: "350px", width: "100%"}}/>
+						<img src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`} onClick={()=> setSingle(vehicle.properties, vehicle.uid)} className="card-img-top char-card" />
 					</Link>
-					<div className="card-body">
+					<div className="card-body d-flex flex-column justify-content-between">
 						<Link to={"/single/"+"vehicles/"+vehicle.uid} style={{textDecoration: "none", color: "black"}}>
 							<h5 className="card-title" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>{vehicle.properties.name}</h5>
 				  		</Link>
@@ -59,9 +59,9 @@ export const Vehicles = () => {
 						</div>
 				  		<div className="row-col-2 d-flex flex-row justify-content-between">
 					  		<Link to={"/single/"+"vehicles/"+vehicle.uid}>
-								<span className="btn btn-outline-dark" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More!</span>
+								<span className="btn btn-outline-warning rounded-pill" onClick={()=> setSingle(vehicle.properties, vehicle.uid)}>Learn More</span>
 							</Link>
-					  		<span className="btn btn-outline-warning" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</span>
+					  		<span className="btn btn-outline-warning rounded-circle" onClick={()=> setSingle(vehicle.properties, vehicle.uid, "fav")}>♥</span>
 				  		</div>
 					</div>
 		  		</div>
